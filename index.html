@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<title>Gamle mænd med nye terninger</title>
+<meta charset="utf-8" />
+<meta name="description" content="terninger warhammer rollespil WFRP" />
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/w3css/w3.css">
+</head>
+<style>
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<body">
+
+    <div class="w3-bar w3-light-grey">
+        <div class="w3-dropdown-hover">
+            <button class="w3-button"><i class="w3-bar-item w3-button w3-right fa fa-map-o fa-2x"
+                    aria-hidden="true"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="nuln.html" class="w3-bar-item w3-button"><img src="images/nuln.png" width="100%"></a>
+            </div>
+        </div>
+        <a href="https://docs.google.com/document/d/10Ft7qv8DL43Nnb4LumXop2-r6w20wZOJWCJ_hQmYgpk/edit"
+            class="w3-button"><i class="material-icons w3-bar-item w3-button w3-right "
+                style="font-size:30px">menu_book</i></a>
+        <a href="https://youtu.be/WYcEhtSIHtI" class="w3-button"><i
+                class="w3-bar-item w3-button w3-right fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
+        <a href="https://twitter.com/gamlemaend" class="w3-button"><i
+                class="w3-bar-item w3-button w3-right fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+    </div>
+
+    <div class="w3-content w3-center">
+        <h1 style="font-size:70px"><b>GAMLE MÆND MED</b></h1>
+        <h1 style="font-size:70px"><b>NYE TERNINGER </b></h1>
+    </div>
+    <div class="w3-content w3-white">
+
+        <div class="w3-card w3-row w3-margin">
+
+            <div class="w3-container">
+                <div class="w3-bar" style="font-size: 24px">
+                    <div class="w3-bar-item">
+                        Introduktion
+                    </div>
+                    <a href="#" onclick="toggle_intro_text()">
+                        <i class="material-icons w3-bar-item w3-button w3-right "
+                            style="font-size:48px">visibility</i></a>
+                </div>
+                <div id="intro-text">
+                    <p><i>
+                            ”Året er 2312 efter Sigmar. I imperiet er Magnus den Fromme blevet udnævnt til Kejser efter
+                            at han har slået en bølge af kaos i nord tilbage.<br><br>
+
+                            Mod syd ligger hovedstand Nuln. Med sin overflod af muligheder tiltrækker den folk af alle
+                            racer fra hele imperiet – blandt andet en lille gruppe eventyrer som har lagt deres
+                            trivielle dagligdag bag sig for at søge lykken.<br><br>
+
+                            Men Nuln gemmer på mange hemmeligheder og jagten på guld og berømmelse ender ofte i død
+                            eller lemlæstelse for mange eventyrer. Vil vores lille grupper overleve længe nok til at
+                            kunne prale af deres bedrifter? Eller vil det som så ofte før i denne brutale verden ende
+                            med kniven fra en kultist begravet i ryggen?<br><br>
+
+                            Lyt med når vores usandsynlige helte kaster sig ud i nye eventyr”.<br></i>
+                    </p>
+                    <div class="w3-center"> - O - </div>
+                    <p>
+                        Velkommen til Gamle mænd med nye terninger. Vi begyndte i 2019 at podcaste vores bord rollespil
+                        som en episk føljeton af lyd kapitler. Vi spiller i øjeblikket en kampagne sat i Warhammer
+                        universet i år 2312. Det er helt og aldeles old-school, da vi bruger de gamle 1st edition
+                        regler.
+
+                        Vi håber at du vil slå følge med vores karakterer i deres rejse mod det ukendte.<br><br>
+                    </p>
+                    <div class="w3-bar" style="font-size: 24px">
+                        <div class="w3-bar-item">
+                            Personer
+                        </div>
+                    </div>
+                    <div class="w3-card">
+                        <div class="w3-container">
+                            <p>
+                                <img src="images/oddick.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                    style="width:100px">
+                            <p>Oddick spillet af Jens | Race: Dwarf | Career: Troll slayer</p><br><br>
+                            <hr>
+                            <img src="images/halfdan.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:100px">
+                            <p>Halfdan spillet af Peter | Race: Halfling | Career: Hunter</p><br><br>
+                            <hr>
+                            <img src="images/undick.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:100px">
+                            <p>Undick spillet af Bo GT | Race: Dwarf | Career: Artisans apprentice </p><br><br>
+                            <hr>
+                            <img src="images/finn.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:100px">
+                            <p>Finn spillet af Bo VN | Race: Halfling | Career: Herdsman </p><br><br>
+                            <hr>
+                            <img src="images/adric.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:100px">
+                            <p>Adric spillet af Stefan | Race: Human | Career: Scribe</p><br><br>
+                            <hr>
+                            <img src="images/odrick.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:100px">
+                            <p>Odrick spillet af Torben | Race: Human | Career: Mercenary</p><br><br>
+                            <hr>
+                            <img src="images/marath.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:100px">
+                            <p>Marath spillet af Henryk | Race: Human | Career: Entertainer</p><br><br>
+                            <hr>
+                            <img src="images/gm.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:100px; height: 100px;">
+                            <p>Game master er Glen Voss</p><br><br><br><br><br>
+                            </p>
+                            <iframe width="100%" height="720" src="https://www.youtube.com/embed/WYcEhtSIHtI"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <p><br>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="w3-card w3-row w3-margin">
+
+            <div class="w3-container">
+                <div class="w3-bar" style="font-size: 24px">
+                    <div class="w3-bar-item">
+                        WFRP Investigating Oldenhaller part 3
+                    </div>
+                </div>
+                <p>
+                    Velkommen til niende session af vores Warhammer Fantasy Roleplay kampagne. Efter
+                    overraskelsesangrebet fra Valentina banden i sidste session, må vores helte søge tilflugt hos Shalya
+                    præsterne en stund. Følg med når de allierer sig med endnu et præsteskab, afdækker nogle ubehagelige
+                    sandheder om den igle der har bosat sig i Adrics krop og står ansigt til ansigt med elvernes klan
+                    leder...<br>
+                    Kort og hand-outs kan ses på <a href="thhps://twitter.com/gamlemaend">twitter.com/gamlemaend</a>
+                    eller <a href="www.gamlemaend.dk">her</a> Vi spiller med Ist ed regler med nogle få house rules fra
+                    2nd, 3rd og 4th ed.
+                    <iframe src="https://open.spotify.com/embed-podcast/episode/5uqcjvtDS7m5E15vwkftKr" width="100%"
+                        height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+        </div>
+        <div class="w3-card w3-row w3-margin">
+
+            <div class="w3-container">
+                <div class="w3-bar" style="font-size: 24px">
+                    <div class="w3-bar-item">
+                        WFRP Investigating Oldenhaller part 2
+                    </div>
+                </div>
+                <p>
+                    Ottende session af vores Warhammer Fantasy Roleplay kampagne. Efter et vellykket indbrud i sidste
+                    session kommer vores helte ud for lidt af hvert i et forsøg på at slippe uset væk fra Oldenhallers
+                    hus. Følg med når vores helte får en ny opgave som kræver deres fineste smagssans, får skabt
+                    forbindelse til en vigtig allieret og endnu engang står ansigt-til-ansigt med en af Nulns bander...
+                    Kort og hand-outs kan ses på twitter.com/gamlemaend eller www.gamlemaend.dk Vi spiller med 1st ed
+                    regler med nogle få house rules fra 2nd, 3rd og 4th ed.
+                    <iframe src="https://open.spotify.com/embed-podcast/episode/4VdORX2Nt4VggSPB1aCUB9" width="100%"
+                        height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+        </div>
+        <div class="w3-card w3-row w3-margin">
+
+            <div class="w3-container">
+                <div class="w3-bar" style="font-size: 24px">
+                    <div class="w3-bar-item">
+                        WFRP Investigating Oldenhaller part 1
+                    </div>
+                    <a href="/d_slideshow-WFRP-Investigating-Oldenhaller-part-1.html">
+                        <i class="material-icons w3-bar-item w3-button w3-right "
+                            style="font-size:48px">photo_library</i></a>
+                </div>
+                <p>
+                    Nu med kort og handouts på Twitter! Spændende session af vores Warhammer Fantasy
+                    Roleplay kampagne. Denne gang sætter vores eventyrer sig for at finde ud af hvad det er med
+                    den ring, som bliver ved med at krydse deres veje... Følg med når vores helte bryder
+                    ind hos en sagesløs person, skræmmer livet af folk, bryder ind hos endnu flere
+                    (sagesløse) personer og til sidst får færten af, hvem der måske er bagmand
+                    bag mysteriet om ringen. Se kort og hand-outs på twitter.com/gamlemaend Vi spiller
+                    med Ist ed regler med nogle få house rules fra 2nd, 3rd og 4th ed.<br><br>
+                    <iframe src="https://open.spotify.com/embed-podcast/episode/6IhR6kd4uwexqT627yfKql" width="100%"
+                        height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+        </div>
+        <div class="w3-card w3-row w3-margin">
+            <div class="w3-container">
+                <div class="w3-bar">
+                    <div class="w3-bar" style="font-size: 24px">
+                        <div class="w3-bar-item">
+                            WFRP Protecting Dirck Huyderman part 3
+                        </div>
+                    </div>
+                    <p>
+                        Denne session er optaget fredag d. 6. marts. Sjette session af vores Warhammer Fantasy
+                        Roleplay
+                        kampagne. Efter at have sikret sig forsendelsen af øl i sidste session går turen nu
+                        til en lagerhal i Nuln hvor blodet flyder både dag og nat... Følg med når
+                        vores eventyrere afslutter deres mission med en optræden, som ikke går helt efter
+                        planen, og Dircks liv pludseligt er truet netop som alt ser ud til at flaske sig. Vi spiller
+                        med
+                        Ist ed regler med nogle få house rules fra 2nd, 3rd og 4th ed.
+
+                        <iframe src="https://open.spotify.com/embed-podcast/episode/3MxejZK0WUiggEIDk3ANyn" width="100%"
+                            height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-card w3-row w3-margin">
+            <div class="w3-container">
+                <h2>WFRP Protecting Dirck Huyderman part 2</h2>
+                <p>
+                    Femte session af vores Warhammer Fantasy Roleplay kampagne. Efter sidste afsnits tilbageskridt
+                    må vores eventyrer søges andetsteds efter det øl som dværgene i Nuln
+                    er blevet lovet. Følg med når de vover sig tilbage til et sted, hvor skæbnen
+                    har udfordret dem før, og de må tage kampen op mod et væsen hensides denne
+                    verden... Vi spiller med Ist ed regler med nogle få house rules fra 2nd, 3rd og 4th </p>
+                <iframe src="https://open.spotify.com/embed-podcast/episode/67PTUm3k0vH02SUXcoz2Sz" width="100%"
+                    height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+        </div>
+
+        <div class="w3-card w3-row w3-margin">
+            <div class="w3-container">
+                <h2>WFRP Protecting Dirck Huyderman part 1 </h2>
+                <p>
+                    Fjerde session af vores Warhammer Fantasy Roleplay kampagne. Her påtager de usandsynlige
+                    helte sig en opgave som bringer dem midt ind i konflikten mellem to af Nulns bander. Følg
+                    med når et artifakt fra tidligere dukker op igen og vores helte genopdager at
+                    svømning er noget enhver eventyrer bør mestre.„ Vi spiller med Ist ed regler med
+                    nogle få house rules fra 2nd, 3rd og 4th ed. </p>
+                <iframe src="https://open.spotify.com/embed-podcast/episode/0CWEGwOo1MAK7BdsWTFCqW" width="100%"
+                    height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+        </div>
+        <div class="w3-card w3-row w3-margin">
+            <div class="w3-container">
+                <h2>WFRP Wurstfest </h2>
+                <p>
+                    Tredje session af vores Warhammer Fantasy Roleplay kampagne hvor vores usandsynlige helte
+                    ankommer til Wurstheim for at tage del i den lokale Wurstfest. Følg med når
+                    pølse smagningen begynder, et håndgemæng bryder ud og en dusør bliver
+                    udlovet... Vi spiller med Ist ed regler med nogle få house rules fra 2nd, 3rd og 4th ed.
+                </p>
+                <iframe src="https://open.spotify.com/embed-podcast/episode/7fNPJc13YSV2XN0Acj915D" width="100%"
+                    height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+        </div>
+        <div class="w3-card w3-row w3-margin">
+            <div class="w3-container">
+                <h2>WFRP Night of Blood </h2>
+                <p>
+                    Anden session af vores Warhammer Fantasy Roleplay kampagne hvor vi spiller endnu et klassisk Ist
+                    ed eventyr "Night of Blood" på vejen mod Wurstheim. Følg med nårvores
+                    eventyrere står overfor en meget suspekt gruppe kro-gæster. Vi spiller med Ist ed
+                    regler med nogle få house rules fra 2nd, 3rd og 4th ed. </p>
+                <iframe src="https://open.spotify.com/embed-podcast/episode/5qE8gammR42Qjg6j4qnu4p" width="100%"
+                    height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+        </div>
+        <div class="w3-card w3-row w3-margin">
+            <div class="w3-container">
+                <h2>WFRP The Oldenhaller contract</h2>
+                <p>
+                    Første session af vores Warhammer Fantasy Roleplay kampagne hvorvi spiller det klassiske
+                    Ist ed eventyr "The Oldenhaller contract". Vi spiller med Ist ed regler med nogle få house
+                    rules fra 2nd, 3rd og 4th ed. (teknisk set vores anden session - første session var
+                    character creation og en kort introduktion til eventyret). </p>
+                <iframe src="https://open.spotify.com/embed-podcast/episode/6alejoOeOuGc9TiPqJXVec" width="100%"
+                    height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="/js/gamlemaend.js"></script>
+    </body>
+
+</html>
