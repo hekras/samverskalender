@@ -173,8 +173,13 @@ $xpos += 180;
 //e('bround', 'child-2', $xpos, 5, 120, 32, 20, 1, 'solid black', 'Ellen', 'c', 'setchild(this)', '');
 //$xpos += 130;
 e('bround', 'child-1', $xpos, 5, 120, 32, 20, 1, 'solid black', 'CM', 'c', 'setchild(this)', '');
-//$xpos += 130;
+$xpos += 130;
 //e('bround', 'child-3', $xpos, 5, 120, 32, 20, 1, 'solid black', 'Artur', 'c', 'setchild(this)', '');
+e('b', '', $xpos, 5, 32, 32, 20, 1, '', '<i class="w3-bar-item w3-button w3-right fa fa-cog fa-1x" aria-hidden="true"></i>', 'c', 'setchild(this)', '');
+$xpos += 35;
+e('b', '', $xpos, 5, 32, 32, 20, 1, '', '<i class="w3-bar-item w3-button w3-right fa fa-magic fa-1x" aria-hidden="true"></i>', 'c', 'setchild(this)', '');
+$xpos += 35;
+e('b', '', $xpos, 5, 32, 32, 20, 1, '', '<i class="w3-bar-item w3-button w3-right fa fa-user fa-1x" aria-hidden="true"></i>', 'c', 'setchild(this)', '');
 
 $m = $_GET['month'];
 if (($m < 1) || ($m > 12)) {
@@ -210,12 +215,13 @@ for ($m = 1; $m < 13; $m++) {
     for ($dd = 1; $dd < intval(date('t', mktime(0, 0, 0, $m, 1, $y))) + 1; $dd++) {
         $sd = intval(date('N', mktime(0, 0, 0, $m, $dd, $y)));
         if ($weekchange) {
-            $id = 'timestamp-' . $y . '-' . 0 . '-' . 0 . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . 0;
-            e('bday', $id, 2 + $xoff, $ypos + $yoff, 32, 31, 18, 1, 'solid black', intval(date('W', mktime(0, 0, 0, $m, $dd, $y))), 'c', 'toggleweek(this)', '');
+            $weeknum = intval(date('W', mktime(0, 0, 0, $m, $dd, $y)));
+            $id = 'timestamp-' . $y . '-' . 0 . '-' . 0 . '-' . $weeknum . '-' . 0;
+            e('bday', $id, 2 + $xoff, $ypos + $yoff, 32, 31, 10, 1, 'solid black', $weeknum, 'c', 'toggleweek(this)', '');
         }
         $id = 'timestamp-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
         $xpos = 2 + $sd * 33;
-        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 31, 10, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
+        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 31, 14, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
 
         if ($sd == 7) {
             $ypos += 33;
