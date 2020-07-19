@@ -191,7 +191,7 @@ if (($m < 1) || ($m > 12)) {
 }
 
 ///////////////////////////////////////////////////////
-// Render the calendar
+// Render the calendar view-one
 ///////////////////////////////////////////////////////
 
 echo '<div id="view-one" style="display: none;">';
@@ -238,6 +238,69 @@ for ($m = 1; $m < 13; $m++) {
             $ypos2 += ($hw + 1) * 3;
         }
     }
+}
+
+echo '</div>';
+
+///////////////////////////////////////////////////////
+// Render the calendar view-two
+///////////////////////////////////////////////////////
+
+echo '<div id="view-one" style="display: inline;">';
+
+// render day numbers
+$xoff = 2;
+$yoff = 60;
+for ($dd = 1; $dd < intval(date('t', mktime(0, 0, 0, $m, 1, $y))) + 1; $dd++) {
+    $id = 'time-' . $y . '-' . 0 . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
+    $xpos = 0;
+    $ypos = 33 + ($dd - 1) * 25;
+    e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 23, 10, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
+}
+
+for ($m = 1; $m < 13; $m++) {
+
+    $kd = array("mon", "tue", "wed", "thu", "fri", "sat", "sun");
+    $kd1 = array("m", "t", "w", "t", "f", "s", "s");
+    $kd2 = array("monday", "tuesday", "wedensday", "thursday", "friday", "saturday", "sunday");
+
+    $hw = 60;
+    $xoff = 40 + 85 * ($m - 1);
+    $yoff = 60;
+
+// render month
+    $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
+    e('bday', $id, $xoff, $yoff, 80, 30, 10, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+
+// rendering daynames
+    /*
+    for ($dd = 1; $dd < 8; $dd++) {
+    $ypos = 50;
+    $xpos = 2 + $dd * 33;
+    $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . $dd;
+    e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 32, 10, 1, 'solid black', $kd[$dd - 1], 'c', 'toggledayofweek(this)', '');
+    }
+     */
+
+// render days
+    $weekchange = true;
+    for ($dd = 1; $dd < intval(date('t', mktime(0, 0, 0, $m, 1, $y))) + 1; $dd++) {
+        $sd = intval(date('N', mktime(0, 0, 0, $m, $dd, $y)));
+        // if ($weekchange) {
+        //     $weeknum = intval(date('W', mktime(0, 0, 0, $m, $dd, $y)));
+        //     $id = 'timestamp-' . $y . '-' . 0 . '-' . 0 . '-' . $weeknum . '-' . 0;
+        //     e('bday', $id, 2 + $xoff, $ypos + $yoff, 32, 31, 10, 1, 'solid black', $weeknum, 'c', 'toggleweek(this)', '');
+        // }
+        $xpos = 0;
+        $ypos = 33 + ($dd - 1) * 25;
+        e('l', '', $xpos + $xoff, $ypos + $yoff, 23, 23, 10, 1, 'solid black', $kd[$sd - 1], 'c', 'toggledayofweek(this)', '');
+
+        $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
+        $xpos = 25;
+        $ypos = 33 + ($dd - 1) * 25;
+        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 55, 23, 10, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
+    }
+
 }
 
 echo '</div>';
