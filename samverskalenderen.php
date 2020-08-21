@@ -253,9 +253,9 @@ $xoff = 2;
 $yoff = 60;
 for ($dd = 1; $dd < intval(date('t', mktime(0, 0, 0, $m, 1, $y))) + 1; $dd++) {
     $id = 'time-' . $y . '-' . 0 . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
-    $xpos = 0;
-    $ypos = 33 + ($dd - 1) * 25;
-    e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 23, 10, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
+    $xpos = 7;
+    $ypos = 29 + ($dd - 1) * 22;
+    e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 23, 12, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
 }
 
 for ($m = 1; $m < 13; $m++) {
@@ -270,17 +270,7 @@ for ($m = 1; $m < 13; $m++) {
 
 // render month
     $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
-    e('bday', $id, $xoff, $yoff, 80, 30, 10, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
-
-// rendering daynames
-    /*
-    for ($dd = 1; $dd < 8; $dd++) {
-    $ypos = 50;
-    $xpos = 2 + $dd * 33;
-    $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . $dd;
-    e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 32, 10, 1, 'solid black', $kd[$dd - 1], 'c', 'toggledayofweek(this)', '');
-    }
-     */
+    e('bday', $id, $xoff, $yoff, 86, 30, 12, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
 
 // render days
     $weekchange = true;
@@ -292,13 +282,12 @@ for ($m = 1; $m < 13; $m++) {
         //     e('bday', $id, 2 + $xoff, $ypos + $yoff, 32, 31, 10, 1, 'solid black', $weeknum, 'c', 'toggleweek(this)', '');
         // }
         $xpos = 0;
-        $ypos = 33 + ($dd - 1) * 25;
-        e('l', '', $xpos + $xoff, $ypos + $yoff, 23, 23, 10, 1, 'solid black', $kd[$sd - 1], 'c', 'toggledayofweek(this)', '');
+        $ypos = 29 + ($dd - 1) * 22;
+        e('l', '', $xpos + $xoff, $ypos + $yoff, 26, 23, 10, 1, 'solid black', $kd1[$sd - 1], 'c', 'toggledayofweek(this)', '');
 
         $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
         $xpos = 25;
-        $ypos = 33 + ($dd - 1) * 25;
-        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 55, 23, 10, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
+        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 61, 23, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
     }
 
 }
