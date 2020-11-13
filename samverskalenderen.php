@@ -38,6 +38,20 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'border: ' . $borderthickness . 'px ' . $borderstyle . ';">';
             $str_ab = '</div>';
             break;
+        case 'red_l':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'color: green; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border: ' . $borderthickness . 'px ' . $borderstyle . ';">';
+            $str_ab = '</div>';
+            break;
         case 'b':
         case 'button':
             $str_aa = '<div style="' .
@@ -65,7 +79,7 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'width: ' . $width . 'px; ' .
                 'height: ' . $height . 'px; ' .
                 'font-size: ' . $fontsize . 'px; ' .
-                'border: 2px solid black; ' .
+                'border: 1px solid black; ' .
                 'cursor: pointer;"' .
                 'id="' . $id . '" ' .
                 'onclick="' . $onclick . '">';
@@ -107,6 +121,7 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'day="' . $timestamp[3] . '" ' .
                 'week="' . $timestamp[4] . '" ' .
                 'dayofweek="' . $timestamp[5] . '" ' .
+                'sel="' . $timestamp[6] . '" ' .
                 'onclick="' . $onclick . '">';
             $str_ab = '</div>';
             break;
@@ -162,12 +177,20 @@ if (($y < 2008) || ($y > 2050)) {
 // Render top line: year / dad/ mum / name / functions
 ///////////////////////////////////////////////////////
 
-$xpos = 2;
-e('bround', 'previous-year', $xpos, 5, 32, 32, 29, 0, '', '&#10094;', 'c', 'setyear(' . ($y - 1) . ')', '');
-$xpos += 35;
-e('l', '', $xpos, 5, 90, 32, 29, 0, '', $y, 'c', '', '');
-$xpos += 92;
-e('bround', 'next-year', $xpos, 5, 32, 32, 29, 0, '', '&#10095;', 'c', 'setyear(' . ($y + 1) . ')', '');
+$ypos = 115;
+$xpos = 5;
+e('l', '', $xpos, 5, 185 * 5, 100, 50, 0, '', 'Samværskalenderen', '', '', '');
+e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 2, 'c', '', '');
+$xpos += 185;
+e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 1, 'c', '', '');
+$xpos += 185;
+e('bround', '', $xpos, $ypos, 180, 60, 50, 4, '', $y, 'c', '', '');
+$xpos += 185;
+e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 1, 'c', '', '');
+$xpos += 185;
+e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 2, 'c', '', '');
+$xpos += 185;
+//e('bround', 'next-year', $xpos, 5, 60, 60, 50, 0, '', '&#10095;', 'c', 'setyear(' . ($y + 1) . ')', '');
 $xpos += 65;
 e('bround', 'calendar-1', $xpos, 5, 150, 32, 20, 1, 'solid black', 'Hos far', 'c', '', '');
 $xpos += 160;
@@ -246,18 +269,13 @@ echo '</div>';
 // Render the calendar view-two
 ///////////////////////////////////////////////////////
 
-echo '<div id="view-one" style="display: inline;">';
+echo '<div id="view-two" style="display: inline;">';
 
 // render day numbers
 $xoff = 2;
+$dx = 60;
 $yoff = 60;
-for ($dd = 1; $dd < intval(date('t', mktime(0, 0, 0, $m, 1, $y))) + 1; $dd++) {
-    $id = 'time-' . $y . '-' . 0 . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
-    $xpos = 7;
-    $ypos = 29 + ($dd - 1) * 22;
-    e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 23, 12, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
-}
-
+$dy = 60;
 for ($m = 1; $m < 13; $m++) {
 
     $kd = array("mon", "tue", "wed", "thu", "fri", "sat", "sun");
@@ -265,12 +283,12 @@ for ($m = 1; $m < 13; $m++) {
     $kd2 = array("monday", "tuesday", "wedensday", "thursday", "friday", "saturday", "sunday");
 
     $hw = 60;
-    $xoff = 40 + 85 * ($m - 1);
-    $yoff = 60;
+    $xoff = 40 + 5 * 60 * ($m - 1);
+    $yoff = 3 * 60;
 
 // render month
     $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
-    e('bday', $id, $xoff, $yoff, 86, 30, 12, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+    e('bday', $id, $xoff, $yoff, $dx * 5 + 1, $dy + 1, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
 
 // render days
     $weekchange = true;
@@ -282,12 +300,16 @@ for ($m = 1; $m < 13; $m++) {
         //     e('bday', $id, 2 + $xoff, $ypos + $yoff, 32, 31, 10, 1, 'solid black', $weeknum, 'c', 'toggleweek(this)', '');
         // }
         $xpos = 0;
-        $ypos = 29 + ($dd - 1) * 22;
-        e('l', '', $xpos + $xoff, $ypos + $yoff, 26, 23, 10, 1, 'solid black', $kd1[$sd - 1], 'c', 'toggledayofweek(this)', '');
+        $ypos = $dy + ($dd - 1) * $dy;
+        e('l', '', $xpos + $xoff, $ypos + $yoff, $dx, $dy / 2, 20, 0, 'solid black', $dd, 'c', '', '');
+        e('l', '', $xpos + $xoff, $ypos + $yoff + $dy / 2, $dx, $dy / 2, 10, 0, 'solid black', $kd[$sd - 1], 'c', '', '');
 
-        $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
-        $xpos = 25;
-        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 61, 23, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+        for ($aa = 1; $aa < 5; $aa++) {
+            $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd . '-' . $aa;
+            $xpos = $dx * $aa;
+            e('bday', $id, $xpos + $xoff, $ypos + $yoff, $dx + 1, $dy + 1, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+//        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 61, 23, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+        }
     }
 
 }
