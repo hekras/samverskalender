@@ -14,7 +14,7 @@ var current_child = 'child-1';
 var alldays = [];
 
 function setyear(y) {
-    window.open("skilsmissekalenderen.php?year=" + y, '_self');
+    window.open("samverskalenderen.php?year=" + y, '_self');
 }
 
 function setcalendar(e) {

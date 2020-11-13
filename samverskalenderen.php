@@ -158,6 +158,10 @@ if (($y < 2008) || ($y > 2050)) {
     $y = intval(date('Y'));
 }
 
+///////////////////////////////////////////////////////
+// Render top line: year / dad/ mum / name / functions
+///////////////////////////////////////////////////////
+
 $xpos = 2;
 e('bround', 'previous-year', $xpos, 5, 32, 32, 29, 0, '', '&#10094;', 'c', 'setyear(' . ($y - 1) . ')', '');
 $xpos += 35;
@@ -185,6 +189,12 @@ $m = $_GET['month'];
 if (($m < 1) || ($m > 12)) {
     $m = intval(date('m'));
 }
+
+///////////////////////////////////////////////////////
+// Render the calendar view-one
+///////////////////////////////////////////////////////
+
+echo '<div id="view-one" style="display: none;">';
 
 for ($m = 1; $m < 13; $m++) {
 
@@ -229,6 +239,61 @@ for ($m = 1; $m < 13; $m++) {
         }
     }
 }
+
+echo '</div>';
+
+///////////////////////////////////////////////////////
+// Render the calendar view-two
+///////////////////////////////////////////////////////
+
+echo '<div id="view-one" style="display: inline;">';
+
+// render day numbers
+$xoff = 2;
+$yoff = 60;
+for ($dd = 1; $dd < intval(date('t', mktime(0, 0, 0, $m, 1, $y))) + 1; $dd++) {
+    $id = 'time-' . $y . '-' . 0 . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
+    $xpos = 7;
+    $ypos = 29 + ($dd - 1) * 22;
+    e('bday', $id, $xpos + $xoff, $ypos + $yoff, 32, 23, 12, 1, 'solid black', $dd, 'c', 'toggleday(this)', '');
+}
+
+for ($m = 1; $m < 13; $m++) {
+
+    $kd = array("mon", "tue", "wed", "thu", "fri", "sat", "sun");
+    $kd1 = array("m", "t", "w", "t", "f", "s", "s");
+    $kd2 = array("monday", "tuesday", "wedensday", "thursday", "friday", "saturday", "sunday");
+
+    $hw = 60;
+    $xoff = 40 + 85 * ($m - 1);
+    $yoff = 60;
+
+// render month
+    $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
+    e('bday', $id, $xoff, $yoff, 86, 30, 12, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+
+// render days
+    $weekchange = true;
+    for ($dd = 1; $dd < intval(date('t', mktime(0, 0, 0, $m, 1, $y))) + 1; $dd++) {
+        $sd = intval(date('N', mktime(0, 0, 0, $m, $dd, $y)));
+        // if ($weekchange) {
+        //     $weeknum = intval(date('W', mktime(0, 0, 0, $m, $dd, $y)));
+        //     $id = 'timestamp-' . $y . '-' . 0 . '-' . 0 . '-' . $weeknum . '-' . 0;
+        //     e('bday', $id, 2 + $xoff, $ypos + $yoff, 32, 31, 10, 1, 'solid black', $weeknum, 'c', 'toggleweek(this)', '');
+        // }
+        $xpos = 0;
+        $ypos = 29 + ($dd - 1) * 22;
+        e('l', '', $xpos + $xoff, $ypos + $yoff, 26, 23, 10, 1, 'solid black', $kd1[$sd - 1], 'c', 'toggledayofweek(this)', '');
+
+        $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd;
+        $xpos = 25;
+        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 61, 23, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+    }
+
+}
+
+echo '</div>';
+
 // input field
 //e('i', 'thomas', 12, 308, 277, 32, 18, 1, 'solid black', '', '%', '', '');
 
