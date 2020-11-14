@@ -4,8 +4,8 @@
     <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/css/w3css/w3.css">
 <style>
+    html,body{font-family:Verdana,sans-serif;font-size:15px;line-height:1.5}
     .center {
         margin: 0;
         position: absolute;
@@ -38,23 +38,39 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'border: ' . $borderthickness . 'px ' . $borderstyle . ';">';
             $str_ab = '</div>';
             break;
-        case 'red_l':
-            $str_aa = '<div style="' .
-                'box-sizing: border-box; ' .
-                'position: absolute; ' .
-                'overflow: hidden; ' .
-                'color: green; ' .
-                'left: ' . $x . 'px; ' .
-                'top: ' . $y . 'px; ' .
-                'width: ' . $width . 'px; ' .
-                'height: ' . $height . 'px; ' .
-                'font-size: ' . $fontsize . 'px; ' .
-                'border: ' . $borderthickness . 'px ' . $borderstyle . ';">';
-            $str_ab = '</div>';
-            break;
         case 'b':
         case 'button':
             $str_aa = '<div style="' .
+            'box-sizing: border-box; ' .
+            'position: absolute; ' .
+            'overflow: hidden; ' .
+            'left: ' . $x . 'px; ' .
+            'top: ' . $y . 'px; ' .
+            'width: ' . $width . 'px; ' .
+            'height: ' . $height . 'px; ' .
+            'font-size: ' . $fontsize . 'px; ' .
+            'border: 1px solid black;' . //$borderthickness . 'px ' . $borderstyle . '; ' .
+            'cursor: pointer;"' .
+                'onclick="' . $onclick . '">';
+            $str_ab = '</div>';
+            break;
+        case 'mb-jan':
+            $str_aa = '<div style="' .
+            'box-sizing: border-box; ' .
+            'position: absolute; ' .
+            'overflow: hidden; ' .
+            'left: ' . $x . 'px; ' .
+            'top: ' . $y . 'px; ' .
+            'width: ' . $width . 'px; ' .
+            'height: ' . $height . 'px; ' .
+            'font-size: ' . $fontsize . 'px; ' .
+            'border: 1px solid black;' . //$borderthickness . 'px ' . $borderstyle . '; ' .
+            'cursor: pointer;"' .
+                'onclick="' . $onclick . '">';
+            $str_ab = '</div>';
+            break;
+        case 'mb-other':
+            $str_aa = '<div style="' .
                 'box-sizing: border-box; ' .
                 'position: absolute; ' .
                 'overflow: hidden; ' .
@@ -63,7 +79,42 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'width: ' . $width . 'px; ' .
                 'height: ' . $height . 'px; ' .
                 'font-size: ' . $fontsize . 'px; ' .
-                'border: ' . $borderthickness . 'px ' . $borderstyle . '; ' .
+                'border-top: 1px solid black;' .
+                'border-bottom: 1px solid black;' .
+                'border-right: 1px solid black;' .
+                'cursor: pointer;"' .
+                'onclick="' . $onclick . '">';
+            $str_ab = '</div>';
+            break;
+        case 'md-select':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border-bottom: 1px solid black;' .
+                'border-right: 1px solid black;' .
+                'cursor: pointer;"' .
+                'onclick="' . $onclick . '">';
+            $str_ab = '</div>';
+            break;
+        case 'md-select-jan':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border-bottom: 1px solid black;' .
+                'border-right: 1px solid black;' .
+                'border-left: 1px solid black;' .
                 'cursor: pointer;"' .
                 'onclick="' . $onclick . '">';
             $str_ab = '</div>';
@@ -178,17 +229,17 @@ if (($y < 2008) || ($y > 2050)) {
 ///////////////////////////////////////////////////////
 
 $ypos = 115;
-$xpos = 5;
-e('l', '', $xpos, 5, 185 * 5, 100, 50, 0, '', 'Samværskalenderen', '', '', '');
-e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 2, 'c', '', '');
+$xpos = 40;
+e('l', '', $xpos, 5, 185 * 5, 100, 84, 0, '', 'Samværskalenderen', '', '', '');
+e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 2, 'c', '', '');
 $xpos += 185;
-e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 1, 'c', '', '');
+e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 1, 'c', '', '');
 $xpos += 185;
-e('bround', '', $xpos, $ypos, 180, 60, 50, 4, '', $y, 'c', '', '');
+e('b', '', $xpos, $ypos, 180, 60, 50, 4, '', $y, 'c', '', '');
 $xpos += 185;
-e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 1, 'c', '', '');
+e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 1, 'c', '', '');
 $xpos += 185;
-e('bround', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 2, 'c', '', '');
+e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 2, 'c', '', '');
 $xpos += 185;
 //e('bround', 'next-year', $xpos, 5, 60, 60, 50, 0, '', '&#10095;', 'c', 'setyear(' . ($y + 1) . ')', '');
 $xpos += 65;
@@ -231,7 +282,7 @@ for ($m = 1; $m < 13; $m++) {
 
 // render month
     $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
-    e('bday', $id, $xoff, 20 + $yoff, 300, 32, 20, 1, '', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+    e('b', $id, $xoff, 20 + $yoff, 300, 32, 20, 1, '', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
 
 // rendering daynames
     for ($dd = 1; $dd < 8; $dd++) {
@@ -288,7 +339,11 @@ for ($m = 1; $m < 13; $m++) {
 
 // render month
     $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
-    e('bday', $id, $xoff, $yoff, $dx * 5 + 1, $dy + 1, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+    if ($m == 1) {
+        e('mb-jan', $id, $xoff, $yoff, $dx * 5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+    } else {
+        e('mb-other', $id, $xoff, $yoff, $dx * 5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+    }
 
 // render days
     $weekchange = true;
@@ -304,10 +359,14 @@ for ($m = 1; $m < 13; $m++) {
         e('l', '', $xpos + $xoff, $ypos + $yoff, $dx, $dy / 2, 20, 0, 'solid black', $dd, 'c', '', '');
         e('l', '', $xpos + $xoff, $ypos + $yoff + $dy / 2, $dx, $dy / 2, 10, 0, 'solid black', $kd[$sd - 1], 'c', '', '');
 
-        for ($aa = 1; $aa < 5; $aa++) {
+        for ($aa = 0; $aa < 5; $aa++) {
             $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd . '-' . $aa;
             $xpos = $dx * $aa;
-            e('bday', $id, $xpos + $xoff, $ypos + $yoff, $dx + 1, $dy + 1, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+            if (($m == 1) && ($aa == 0)) {
+                e('md-select-jan', $id, $xpos + $xoff, $ypos + $yoff, $dx, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+            } else {
+                e('md-select', $id, $xpos + $xoff, $ypos + $yoff, $dx, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+            }
 //        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 61, 23, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
         }
     }
