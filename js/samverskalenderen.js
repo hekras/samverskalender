@@ -137,9 +137,27 @@ function toggledayofweek(e) {
     e.style.background = '';
 }
 
+function select_year(e) {
+    document.getElementById('year-1').style.color =
+        document.getElementById('year-2').style.color =
+        document.getElementById('year-3').style.color =
+        document.getElementById('year-4').style.color =
+        document.getElementById('year-5').style.color =
+        document.getElementById('year-1').style.background =
+        document.getElementById('year-2').style.background =
+        document.getElementById('year-3').style.background =
+        document.getElementById('year-4').style.background =
+        document.getElementById('year-5').style.background = '';
+    e.style.color = _greenfg;
+    e.style.background = _greenbg;
+    console.log(e.id);
+}
+
+
 /***********************************
 // main - program starts here !!!!!!
 ************************************/
+select_year(document.getElementById('year-3'));
 initdays();
 setcalendar(document.getElementById(current_parent));
 setchild(document.getElementById(current_child));

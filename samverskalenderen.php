@@ -41,31 +41,47 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
         case 'b':
         case 'button':
             $str_aa = '<div style="' .
-            'box-sizing: border-box; ' .
-            'position: absolute; ' .
-            'overflow: hidden; ' .
-            'left: ' . $x . 'px; ' .
-            'top: ' . $y . 'px; ' .
-            'width: ' . $width . 'px; ' .
-            'height: ' . $height . 'px; ' .
-            'font-size: ' . $fontsize . 'px; ' .
-            'border: 1px solid black;' . //$borderthickness . 'px ' . $borderstyle . '; ' .
-            'cursor: pointer;"' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border: 1px solid black;' .
+                'cursor: pointer;"' .
+                'onclick="' . $onclick . '">';
+            $str_ab = '</div>';
+            break;
+        case 'select-year-button':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border: 1px solid black;' .
+                'cursor: pointer;"' .
+                'id="' . $id . '" ' .
                 'onclick="' . $onclick . '">';
             $str_ab = '</div>';
             break;
         case 'mb-jan':
             $str_aa = '<div style="' .
-            'box-sizing: border-box; ' .
-            'position: absolute; ' .
-            'overflow: hidden; ' .
-            'left: ' . $x . 'px; ' .
-            'top: ' . $y . 'px; ' .
-            'width: ' . $width . 'px; ' .
-            'height: ' . $height . 'px; ' .
-            'font-size: ' . $fontsize . 'px; ' .
-            'border: 1px solid black;' . //$borderthickness . 'px ' . $borderstyle . '; ' .
-            'cursor: pointer;"' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border: 2px solid black;' .
+                'cursor: pointer;"' .
                 'onclick="' . $onclick . '">';
             $str_ab = '</div>';
             break;
@@ -79,9 +95,9 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'width: ' . $width . 'px; ' .
                 'height: ' . $height . 'px; ' .
                 'font-size: ' . $fontsize . 'px; ' .
-                'border-top: 1px solid black;' .
-                'border-bottom: 1px solid black;' .
-                'border-right: 1px solid black;' .
+                'border-top: 2px solid black;' .
+                'border-bottom: 2px solid black;' .
+                'border-right: 2px solid black;' .
                 'cursor: pointer;"' .
                 'onclick="' . $onclick . '">';
             $str_ab = '</div>';
@@ -231,15 +247,15 @@ if (($y < 2008) || ($y > 2050)) {
 $ypos = 115;
 $xpos = 40;
 e('l', '', $xpos, 5, 185 * 5, 100, 84, 0, '', 'Samværskalenderen', '', '', '');
-e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 2, 'c', '', '');
+e('select-year-button', 'year-1', $xpos, $ypos, 180, 60, 50, 1, '', $y - 2, 'c', 'select_year(this)', '');
 $xpos += 185;
-e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y - 1, 'c', '', '');
+e('select-year-button', 'year-2', $xpos, $ypos, 180, 60, 50, 1, '', $y - 1, 'c', 'select_year(this)', '');
 $xpos += 185;
-e('b', '', $xpos, $ypos, 180, 60, 50, 4, '', $y, 'c', '', '');
+e('select-year-button', 'year-3', $xpos, $ypos, 180, 60, 50, 4, '', $y, 'c', 'select_year(this)', '');
 $xpos += 185;
-e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 1, 'c', '', '');
+e('select-year-button', 'year-4', $xpos, $ypos, 180, 60, 50, 1, '', $y + 1, 'c', 'select_year(this)', '');
 $xpos += 185;
-e('b', '', $xpos, $ypos, 180, 60, 50, 1, '', $y + 2, 'c', '', '');
+e('select-year-button', 'year-5', $xpos, $ypos, 180, 60, 50, 1, '', $y + 2, 'c', 'select_year(this)', '');
 $xpos += 185;
 //e('bround', 'next-year', $xpos, 5, 60, 60, 50, 0, '', '&#10095;', 'c', 'setyear(' . ($y + 1) . ')', '');
 $xpos += 65;
@@ -329,20 +345,20 @@ $yoff = 60;
 $dy = 60;
 for ($m = 1; $m < 13; $m++) {
 
-    $kd = array("mon", "tue", "wed", "thu", "fri", "sat", "sun");
-    $kd1 = array("m", "t", "w", "t", "f", "s", "s");
+    $kd1 = array("mon", "tue", "wed", "thu", "fri", "sat", "sun");
+    $kd = array("m", "t", "w", "t", "f", "s", "s");
     $kd2 = array("monday", "tuesday", "wedensday", "thursday", "friday", "saturday", "sunday");
 
     $hw = 60;
-    $xoff = 40 + 5 * 60 * ($m - 1);
+    $xoff = 40 + 4.5 * 60 * ($m - 1);
     $yoff = 3 * 60;
 
 // render month
     $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
     if ($m == 1) {
-        e('mb-jan', $id, $xoff, $yoff, $dx * 5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+        e('mb-jan', $id, $xoff, $yoff, $dx * 4.5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
     } else {
-        e('mb-other', $id, $xoff, $yoff, $dx * 5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
+        e('mb-other', $id, $xoff, $yoff, $dx * 4.5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
     }
 
 // render days
@@ -356,14 +372,14 @@ for ($m = 1; $m < 13; $m++) {
         // }
         $xpos = 0;
         $ypos = $dy + ($dd - 1) * $dy;
-        e('l', '', $xpos + $xoff, $ypos + $yoff, $dx, $dy / 2, 20, 0, 'solid black', $dd, 'c', '', '');
-        e('l', '', $xpos + $xoff, $ypos + $yoff + $dy / 2, $dx, $dy / 2, 10, 0, 'solid black', $kd[$sd - 1], 'c', '', '');
+        //e('l', '', $xpos + $xoff, $ypos + $yoff + $dy / 2, 3 * $dx / 5, $dy / 2, 14, 0, 'solid black', $dd, 'c', '', '');
+        e('l', '', $xpos + $xoff + $dx / 2, $ypos + $yoff + $dy / 2, $dx / 2, $dy / 2, 12, 0, 'solid black', $kd[$sd - 1], 'c', '', '');
 
-        for ($aa = 0; $aa < 5; $aa++) {
+        for ($aa = 1; $aa < 5; $aa++) {
             $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd . '-' . $aa;
             $xpos = $dx * $aa;
             if (($m == 1) && ($aa == 0)) {
-                e('md-select-jan', $id, $xpos + $xoff, $ypos + $yoff, $dx, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+                e('md-select-jan', $id, $xpos + $xoff, $ypos + $yoff, $dx / 2, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
             } else {
                 e('md-select', $id, $xpos + $xoff, $ypos + $yoff, $dx, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
             }
