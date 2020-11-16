@@ -38,8 +38,20 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'border: ' . $borderthickness . 'px ' . $borderstyle . ';">';
             $str_ab = '</div>';
             break;
-        case 'b':
-        case 'button':
+        case 'ltop':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'border-right: 2px solid black; ' .
+                'border-bottom: 2px solid black;">';
+            $str_ab = '</div>';
+            break;
+        case 'lnumbers':
             $str_aa = '<div style="' .
                 'box-sizing: border-box; ' .
                 'position: absolute; ' .
@@ -49,9 +61,22 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'width: ' . $width . 'px; ' .
                 'height: ' . $height . 'px; ' .
                 'font-size: ' . $fontsize . 'px; ' .
-                'border: 1px solid black;' .
-                'cursor: pointer;"' .
-                'onclick="' . $onclick . '">';
+                'border-bottom: 1px solid black; ' .
+                'border-right: 1px solid black; ' .
+                'border-left: 1px solid black;"><b>';
+            $str_ab = '</b></div>';
+            break;
+        case 'ldaynames-box':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'border-bottom: 1px solid black; ' .
+                'border-right: 1px solid black;">';
             $str_ab = '</div>';
             break;
         case 'select-year-button':
@@ -70,22 +95,7 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'onclick="' . $onclick . '">';
             $str_ab = '</div>';
             break;
-        case 'mb-jan':
-            $str_aa = '<div style="' .
-                'box-sizing: border-box; ' .
-                'position: absolute; ' .
-                'overflow: hidden; ' .
-                'left: ' . $x . 'px; ' .
-                'top: ' . $y . 'px; ' .
-                'width: ' . $width . 'px; ' .
-                'height: ' . $height . 'px; ' .
-                'font-size: ' . $fontsize . 'px; ' .
-                'border: 2px solid black;' .
-                'cursor: pointer;"' .
-                'onclick="' . $onclick . '">';
-            $str_ab = '</div>';
-            break;
-        case 'mb-other':
+        case 'month-button':
             $str_aa = '<div style="' .
                 'box-sizing: border-box; ' .
                 'position: absolute; ' .
@@ -98,6 +108,39 @@ function e($el, $id, $x, $y, $width, $height, $fontsize, $borderthickness, $bord
                 'border-top: 2px solid black;' .
                 'border-bottom: 2px solid black;' .
                 'border-right: 2px solid black;' .
+                'cursor: pointer;"' .
+                'onclick="' . $onclick . '">';
+            $str_ab = '</div>';
+            break;
+
+// legacy stuff
+        case 'b':
+        case 'button':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border: 1px solid black;' .
+                'cursor: pointer;"' .
+                'onclick="' . $onclick . '">';
+            $str_ab = '</div>';
+            break;
+        case 'mb-jan':
+            $str_aa = '<div style="' .
+                'box-sizing: border-box; ' .
+                'position: absolute; ' .
+                'overflow: hidden; ' .
+                'left: ' . $x . 'px; ' .
+                'top: ' . $y . 'px; ' .
+                'width: ' . $width . 'px; ' .
+                'height: ' . $height . 'px; ' .
+                'font-size: ' . $fontsize . 'px; ' .
+                'border: 2px solid black;' .
                 'cursor: pointer;"' .
                 'onclick="' . $onclick . '">';
             $str_ab = '</div>';
@@ -339,10 +382,20 @@ echo '</div>';
 echo '<div id="view-two" style="display: inline;">';
 
 // render day numbers
-$xoff = 2;
+$xoff = 10;
 $dx = 60;
-$yoff = 60;
 $dy = 60;
+$yoff = 3 * 60;
+
+$xpos = $xoff;
+$ypos = $yoff;
+e('ltop', '', $xpos, $ypos, $dx / 2, $dy, 14, 0, '', '', '', '', '');
+for ($dd = 1; $dd <= 31; $dd++) {
+    $ypos = $yoff + $dy + ($dd - 1) * $dy;
+    e('lnumbers', '', $xpos, $ypos, $dx / 2, $dy, 14, 0, '', $dd, 'c', '', '');
+}
+
+// render big calendar
 for ($m = 1; $m < 13; $m++) {
 
     $kd1 = array("mon", "tue", "wed", "thu", "fri", "sat", "sun");
@@ -355,11 +408,7 @@ for ($m = 1; $m < 13; $m++) {
 
 // render month
     $id = 'timestamp-' . $y . '-' . $m . '-' . 0 . '-' . 0 . '-' . 0;
-    if ($m == 1) {
-        e('mb-jan', $id, $xoff, $yoff, $dx * 4.5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
-    } else {
-        e('mb-other', $id, $xoff, $yoff, $dx * 4.5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
-    }
+    e('month-button', $id, $xoff, $yoff, $dx * 4.5, $dy, 30, 1, 'solid black', date('F', mktime(0, 0, 0, $m, 1, $y)), 'c', 'togglemonth(this)', '');
 
 // render days
     $weekchange = true;
@@ -370,18 +419,20 @@ for ($m = 1; $m < 13; $m++) {
         //     $id = 'timestamp-' . $y . '-' . 0 . '-' . 0 . '-' . $weeknum . '-' . 0;
         //     e('bday', $id, 2 + $xoff, $ypos + $yoff, 32, 31, 10, 1, 'solid black', $weeknum, 'c', 'toggleweek(this)', '');
         // }
-        $xpos = 0;
-        $ypos = $dy + ($dd - 1) * $dy;
+        $xpos = $xoff;
+        $ypos = $yoff + $dy + ($dd - 1) * $dy;
         //e('l', '', $xpos + $xoff, $ypos + $yoff + $dy / 2, 3 * $dx / 5, $dy / 2, 14, 0, 'solid black', $dd, 'c', '', '');
-        e('l', '', $xpos + $xoff + $dx / 2, $ypos + $yoff + $dy / 2, $dx / 2, $dy / 2, 12, 0, 'solid black', $kd[$sd - 1], 'c', '', '');
+        e('ldaynames-box', '', $xpos, $ypos, $dx / 2, $dy, 0, 0, '', '', '', '', '');
+        e('l', '', $xpos, $ypos + $dy / 2, $dx / 2, $dy / 2, 12, 0, 'solid black', $kd[$sd - 1], 'c', '', '');
 
-        for ($aa = 1; $aa < 5; $aa++) {
+        for ($aa = 0; $aa < 4; $aa++) {
             $id = 'time-' . $y . '-' . $m . '-' . $dd . '-' . intval(date('W', mktime(0, 0, 0, $m, $dd, $y))) . '-' . $sd . '-' . $aa;
-            $xpos = $dx * $aa;
+            $xpos = $xoff + $dx * $aa + $dx / 2;
+            e('md-select', $id, $xpos, $ypos, $dx, $dy, 10, 0, '', '', '', 'toggleday(this)', '');
             if (($m == 1) && ($aa == 0)) {
-                e('md-select-jan', $id, $xpos + $xoff, $ypos + $yoff, $dx / 2, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+                //e('md-select-jan', $id, $xpos + $xoff, $ypos + $yoff, $dx / 2, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
             } else {
-                e('md-select', $id, $xpos + $xoff, $ypos + $yoff, $dx, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
+                //e('md-select', $id, $xpos + $xoff, $ypos + $yoff, $dx, $dy, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
             }
 //        e('bday', $id, $xpos + $xoff, $ypos + $yoff, 61, 23, 10, 1, 'solid black', '', 'c', 'toggleday(this)', '');
         }
